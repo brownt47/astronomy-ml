@@ -1,1 +1,4 @@
-TBD
+data/raw/
+data/processed/
+data/manifests/
+logs/

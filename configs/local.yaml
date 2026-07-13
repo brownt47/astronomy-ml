@@ -1,0 +1,16 @@
+project:
+  name: astronomy-ml
+  environment: local
+
+paths:
+  raw_data: data/raw
+  processed_data: data/processed
+  manifests: data/manifests
+  logs: logs
+
+dataset:
+  sample_size: 500
+  image_extensions:
+    - .jpg
+    - .jpeg
+    - .png
