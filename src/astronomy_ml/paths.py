@@ -1,6 +1,10 @@
 from pathlib import Path
 from typing import Any
 
+def get_project_root() -> Path:
+    """Return the root directory of the project."""
+
+    return Path(__file__).resolve().parents[2]
 
 def create_project_directories(
     config: dict[str, Any],
