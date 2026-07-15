@@ -7,4 +7,5 @@ def load_image(path: Path) -> Image.Image:
     if not path.exists():
         raise FileNotFoundError(f"Image does not exist: {path}")
 
-    return Image.open(path)
+    with Image.open(path) as image:
+        return image.copy()
