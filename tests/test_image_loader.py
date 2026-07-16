@@ -7,8 +7,8 @@ from PIL import Image
 from astronomy_ml.data.image_loader import load_image
 
 
-def test_load_image_raises_for_missing_file() -> None:
-    nonexistent_image = Path("missing-image.png")
+def test_load_image_raises_for_missing_file(tmp_path: Path) -> None:
+    nonexistent_image = tmp_path / "missing-image.png"
 
     with pytest.raises(FileNotFoundError):
         load_image(nonexistent_image)

@@ -2,3 +2,14 @@ data/raw/
 data/processed/
 data/manifests/
 logs/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Pytest
+.pytest_cache/
+
+# Virtual environments (if applicable)
+.venv/
+venv/
