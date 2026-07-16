@@ -1,3 +1,4 @@
+# Project data
 data/raw/
 data/processed/
 data/manifests/
@@ -7,9 +8,14 @@ logs/
 __pycache__/
 *.py[cod]
 
+# Build artifacts
+*.egg-info/
+build/
+dist/
+
 # Pytest
 .pytest_cache/
 
-# Virtual environments (if applicable)
+# Virtual environments
 .venv/
 venv/
