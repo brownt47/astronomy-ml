@@ -1,7 +1,7 @@
 """Check image discovery against the configured raw data directory."""
 
 from astronomy_ml.config import load_config
-from astronomy_ml.inventory import find_image_files
+from astronomy_ml.data.inventory import find_image_files
 from astronomy_ml.paths import get_project_root
 
 
