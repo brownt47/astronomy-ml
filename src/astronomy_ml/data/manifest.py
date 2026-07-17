@@ -12,7 +12,7 @@ def build_manifest(image_dir: Path) -> pd.DataFrame:
     for image_path in image_files:
         record = {}
         record = {
-                   "filepath": image_path,
+                   "filepath": str(image_path),
                    "filename": image_path.name,
                    "extension": image_path.suffix.lower(),
                  }
