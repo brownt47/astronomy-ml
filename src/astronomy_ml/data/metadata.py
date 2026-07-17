@@ -5,7 +5,6 @@ def extract_metadata(path: Path)-> dict:
 
     with Image.open(path) as image:
         metadata = {
-            "filename": path.name,
             "width": image.width,
             "height": image.height,
             "mode": image.mode,
