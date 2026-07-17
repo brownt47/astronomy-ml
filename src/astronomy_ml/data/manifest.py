@@ -4,6 +4,7 @@ import pandas as pd
 
 from astronomy_ml.data.inventory import find_image_files
 from astronomy_ml.data.metadata import extract_metadata
+from astronomy_ml.data.schema import MANIFEST_COLUMNS
 
 def build_manifest(image_dir: Path) -> pd.DataFrame:
     records = []
@@ -36,5 +37,7 @@ def build_manifest(image_dir: Path) -> pd.DataFrame:
     
         records.append(record)
     
-    return pd.DataFrame(records)
+    manifest = pd.DataFrame(records, columns=MANIFEST_COLUMNS)
+
+    return manifest[MANIFEST_COLUMNS]
 
