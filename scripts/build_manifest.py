@@ -16,8 +16,13 @@ def main() -> None:
     manifest = build_manifest(raw_dir)
     manifest.to_parquet(manifest_file, index=False)
 
+    valid = manifest["is_valid"].sum()
+    invalid = len(manifest) - valid
+
     print(f"Wrote {len(manifest)} records to {manifest_file}")
-    
+    print(f"Valid images:   {valid}")
+    print(f"Invalid images: {invalid}")
+        
 
 if __name__ == "__main__":
     main()
