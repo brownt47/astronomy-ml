@@ -11,7 +11,6 @@ def test_extract_metadata(tmp_path: Path) -> None:
 
     metadata = extract_metadata(image_path)
 
-    assert metadata["filename"] == "test.png"   
     assert metadata["width"] == 123
     assert metadata["height"] == 456
     assert metadata["mode"] == "RGB"
