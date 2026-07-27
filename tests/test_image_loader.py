@@ -1,7 +1,9 @@
 from pathlib import Path
 
 import pytest
+import numpy as np
 from PIL import Image
+
 
 
 from astronomy_ml.data.image_loader import load_image
@@ -20,6 +22,6 @@ def test_load_image_success(tmp_path: Path) -> None:
 
     image = load_image(image_path)
 
-    assert isinstance(image, Image.Image)
-    assert image.size ==  (100,100)
-    assert image.mode == ("RGB")
+    assert isinstance(image, np.ndarray)
+    assert image.shape ==  (100,100, 3)
+    
