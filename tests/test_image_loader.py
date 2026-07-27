@@ -40,3 +40,12 @@ def test_load_fits_image(tmp_path: Path) -> None:
     assert isinstance(image, np.ndarray)
     assert image.shape == (100, 200)
     assert np.array_equal(image, test_data)
+
+def test_load_fits_no_data(tmp_path: Path) -> None:
+    image_path = tmp_path / "test2.fits"
+
+    hdu = fits.PrimaryHDU()
+    hdu.writeto(image_path)
+
+    with pytest.raises(ValueError, match="Primary HDU contains no image data"):
+        load_image(image_path)
