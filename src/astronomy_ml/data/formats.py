@@ -1,0 +1,11 @@
+FITS_EXTENSIONS = {".fits",".fit",".fts"}
+
+STANDARD_IMAGE_EXTENSIONS = {
+    ".jpg",
+    ".jpeg",
+    ".png",
+}
+
+SUPPORTED_IMAGE_EXTENSIONS = (
+    FITS_EXTENSIONS | STANDARD_IMAGE_EXTENSIONS
+)

@@ -11,7 +11,6 @@ def build_manifest(image_dir: Path) -> pd.DataFrame:
     image_files = find_image_files(image_dir)
 
     for image_path in image_files:
-        record = {}
         record = {
                    "filepath": str(image_path),
                    "filename": image_path.name,
@@ -23,21 +22,12 @@ def build_manifest(image_dir: Path) -> pd.DataFrame:
             record["is_valid"] = True
             record["error_message"] = None
     
-        except FileNotFoundError as error:
+        except (UnidentifiedImageError, FileNotFoundError, OSError) as error:
             record["is_valid"] = False
             record["error_message"] = str(error)
-    
-        except UnidentifiedImageError as error:
-            record["is_valid"] = False
-            record["error_message"] = str(error)
-    
-        except OSError as error:
-            record["is_valid"] = False
-            record["error_message"] = str(error)
-    
+
         records.append(record)
     
     manifest = pd.DataFrame(records, columns=MANIFEST_COLUMNS)
 
     return manifest[MANIFEST_COLUMNS]
-

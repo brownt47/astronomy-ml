@@ -2,13 +2,17 @@ from pathlib import Path
 from PIL import Image
 from astropy.io import fits
 import numpy as np
+from astronomy_ml.data.formats import (
+    FITS_EXTENSIONS,
+    STANDARD_IMAGE_EXTENSIONS,
+)
 
 def load_image(path: Path) -> np.ndarray:
     """Load an image from disk"""
 
-    if path.suffix.lower() in {".jpg",".jpeg",".png"}:
+    if path.suffix.lower() in STANDARD_IMAGE_EXTENSIONS:
         return _load_standard_image(path)
-    elif path.suffix.lower() in {".fits",".fit",".fts"}:
+    elif path.suffix.lower() in FITS_EXTENSIONS:
         return _load_fits_image(path)
     
 def _load_standard_image(path: Path) -> np.ndarray:
