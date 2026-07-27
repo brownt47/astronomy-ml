@@ -1,15 +1,7 @@
 """Utilities for discovering image files."""
 
 from pathlib import Path
-
-SUPPORTED_IMAGE_EXTENSIONS = {
-    ".jpg",
-    ".jpeg",
-    ".png",
-    ".fits",
-    ".fit",
-    ".fts",
-}
+from astronomy_ml.data.formats import SUPPORTED_IMAGE_EXTENSIONS
 
 
 def find_image_files(directory: Path) -> list[Path]:
