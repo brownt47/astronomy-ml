@@ -24,9 +24,14 @@ def _load_fits_image(path: Path) -> np.ndarray:
         raise FileNotFoundError(f"Image does not exist: {path}")
     
     with fits.open(path) as hdul:
-        image_array = np.asarray(hdul[0].data)
+        data = hdul[0].data
+
+        if data is None:
+            raise ValueError("Primary HDU contains no image data")
+
+    return np.asarray(data)
                   
-        return image_array
+        
 
 
 
