@@ -3,6 +3,7 @@ from pathlib import Path
 import pytest
 import numpy as np
 from PIL import Image
+from astropy.io import fits
 
 
 
@@ -15,7 +16,7 @@ def test_load_image_raises_for_missing_file(tmp_path: Path) -> None:
     with pytest.raises(FileNotFoundError):
         load_image(nonexistent_image)
 
-def test_load_image_success(tmp_path: Path) -> None:
+def test_load_png_image(tmp_path: Path) -> None:
     image_path = tmp_path / "test.png"
 
     Image.new("RGB", (100,100)).save(image_path)
@@ -24,4 +25,18 @@ def test_load_image_success(tmp_path: Path) -> None:
 
     assert isinstance(image, np.ndarray)
     assert image.shape ==  (100,100, 3)
+
+
+def test_load_fits_image(tmp_path: Path) -> None:
+    image_path = tmp_path / "test1.fits"
+
+    test_data = np.zeros((100, 200))
     
+    hdu = fits.PrimaryHDU(data = test_data)
+    hdu.writeto(image_path)
+
+    image = load_image(image_path)
+
+    assert isinstance(image, np.ndarray)
+    assert image.shape == (100, 200)
+    assert np.array_equal(image, test_data)

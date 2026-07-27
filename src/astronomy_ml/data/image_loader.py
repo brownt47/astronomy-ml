@@ -1,5 +1,6 @@
 from pathlib import Path
 from PIL import Image
+from astropy.io import fits
 import numpy as np
 
 def load_image(path: Path) -> np.ndarray:
@@ -19,5 +20,13 @@ def _load_standard_image(path: Path) -> np.ndarray:
         return image_array
 
 def _load_fits_image(path: Path) -> np.ndarray:
-    raise NotImplementedError
+    if not path.exists():
+        raise FileNotFoundError(f"Image does not exist: {path}")
+    
+    with fits.open(path) as hdul:
+        image_array = np.asarray(hdul[0].data)
+                  
+        return image_array
+
+
 
